@@ -6,7 +6,9 @@ jobs:
       - checkout
       - run: mvn test
       - store_test_results:
-               path: target/surefire-reports
+               path: target/my-reports
       - run:
           name: Upload to CodeCov
           command: bash <(curl -s https://codecov.io/bash)
+      - codecov/upload:
+          file: target/my-reports
